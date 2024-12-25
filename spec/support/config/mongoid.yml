@@ -10,3 +10,6 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+        <% if mongoid7? %>
+        server_selection_timeout: 5
+        <% end %>

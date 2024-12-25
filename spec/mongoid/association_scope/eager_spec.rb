@@ -11,7 +11,7 @@ RSpec.describe Mongoid::AssociationScope::Eager do
 
       expect(u.posts.size).to eq 5
       expect(u.published_posts.size).to eq 2
-      expect(u.published_posts.criteria.selector).to eq({ "published_at" => {"$ne" => nil}, "author_id" => u.id })
+      expect(u.published_posts.criteria.selector).to eq({ "published_at" => { "$ne" => nil }, "author_id" => u.id })
       expect(u.published_posts.map(&:title)).to include("published post 0", "published post 1")
     end
   end

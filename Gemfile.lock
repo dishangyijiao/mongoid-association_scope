@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     mongoid-association_scope (0.1.0)
-      mongoid (>= 4.0)
+      mongoid (>= 5.0)
 
 GEM
   remote: https://rubygems.org/

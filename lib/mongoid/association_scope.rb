@@ -10,8 +10,17 @@ require_relative "association_scope/referenced"
 
 module Mongoid
   module AssociationScope
-    if Mongoid::VERSION >= '7.0.0'
-      # TODO
+    if Mongoid::VERSION >= "7.0.0"
+      Mongoid::Association.include Macros
+      Mongoid::Association::Eager::Base.prepend Eager
+      Mongoid::Association::Metadata.prepend Metadata
+      Mongoid::Association::Options.include Options
+      [
+        Mongoid::Association::Referenced::BelongsTo,
+        Mongoid::Association::Referenced::HasMany,
+        Mongoid::Association::Referenced::HasAndBelongsToMany,
+        Mongoid::Association::Referenced::HasOne
+      ].each { |mod| mod.singleton_class.prepend Referenced::Scoped }
     else
       Mongoid::Relations.include Macros
       Mongoid::Relations::Eager::Base.prepend Eager
@@ -22,7 +31,7 @@ module Mongoid
         Mongoid::Relations::Referenced::Many,
         Mongoid::Relations::Referenced::ManyToMany,
         Mongoid::Relations::Referenced::One
-      ].each {|mod| mod.singleton_class.prepend Referenced::Scoped }
+      ].each { |mod| mod.singleton_class.prepend Referenced::Scoped }
     end
   end
 end

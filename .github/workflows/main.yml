@@ -10,7 +10,7 @@ jobs:
         # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
         ruby-version: ['2.5', '2.6', '2.7', '3.0']
         mongodb-version: ['4.0']
-        gemfile: [mongoid5, mongoid6]
+        gemfile: [mongoid5, mongoid6, mongoid7]
         exclude:
         - ruby-version: '2.7'
           mongodb-version: '4.0'
@@ -21,6 +21,9 @@ jobs:
         - ruby-version: '3.0'
           mongodb-version: '4.0'
           gemfile: mongoid6
+        - ruby-version: '3.0'
+          mongodb-version: '4.0'
+          gemfile: mongoid7
     runs-on: ubuntu-latest
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
       BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}.gemfile
