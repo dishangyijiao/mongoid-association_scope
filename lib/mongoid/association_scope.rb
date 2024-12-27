@@ -12,8 +12,7 @@ module Mongoid
   module AssociationScope
     if Mongoid::VERSION >= "7.0.0"
       Mongoid::Association.include Macros
-      Mongoid::Association::Eager::Base.prepend Eager
-      Mongoid::Association::Metadata.prepend Metadata
+      Mongoid::Association::Referenced::Eager::Base.prepend Eager
       Mongoid::Association::Options.include Options
       [
         Mongoid::Association::Referenced::BelongsTo,
